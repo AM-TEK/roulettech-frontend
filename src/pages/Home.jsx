@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import api from "../api"
 import Accomplishment from "../components/Accomplishment";
+import "../styles/Home.css";
 export default function Home() {
   const [accomplishments, setAccomplishments] = useState([]);
   const [content, setContent] = useState("");
@@ -19,18 +20,19 @@ export default function Home() {
 
   const deleteAccomplishment = async (id) => {
     api.delete(`/api/accomplishments/delete/${id}/`)
-      .then((res) => {
-        if (res.status === 204) {
-          alert("Accomplishment deleted");
-        } else {
-          alert("Something went wrong");
-        }
+      .then(() => {
+        alert("Accomplishment deleted");
         getAccomplishments();
-      }).catch((err) => console.log(err));
+      }).catch((err) => {
+        console.log(err);
+        alert("Something went wrong");
+      });
   };
 
   const addAccomplishment = async (event) => {
     event.preventDefault();
+    const payload = { category, content };
+    console.log('Payload:', payload);
     api.post("/api/accomplishments/", { category, content }).then((res) => {
       if (res.status === 201) {
         alert("Accomplishment added");
