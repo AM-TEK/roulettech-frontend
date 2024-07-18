@@ -10,8 +10,9 @@
   max-width: 400px;
 }
 
-.form-input {
-  width: 90%;
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
